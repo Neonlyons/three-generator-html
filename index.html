@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Генератор статических сайтов</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#home">Главная</a>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>Генератор сайтов</h1>
+        </div>
+        <div class="main-content">
+            <form id="generateForm" action="/generate" method="post">
+                <h2>Выбор шаблона</h2>
+                <select name="template" id="templateSelect">
+                    <option value="template1">Шаблон 1</option>
+                    <option value="template2">Шаблон 2</option>
+                    <option value="template3">Шаблон 3</option>
+                </select>
+                <br><br>
+
+                <h2>Основные переменные</h2>
+		<p><b>Примечание!</b>Картинки должны быть следующего названия и формата: logo.webp, icon.png, room.png, back.jpg, price1.jpg, price2.jpg, img1.jpg, img2.jpg, img3.jpg, img4.jpg, img5.jpg, img6.jpg, ap1.jpg, ap2.jpg, ap3.jpg, ap4.jpg, ap5.jpg, ap6.jpg, shema.jpg, map.jpg, quiz.jpg.</p>
+                <div id="mainVariables"></div>
+
+                <h2>Пользовательские переменные</h2>
+                <div id="formFields"></div>
+                <button type="button" id="addField">Добавить переменную</button>
+                <br><br>
+                <button type="submit">Сгенерировать</button>
+            </form>
+            <div id="downloadLink"></div>
+            <div id="downloadArchive"></div>
+
+            <h2>Управление файлами</h2>
+            <div id="fileList"></div>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" name="file" multiple>
+                <button type="submit">Загрузить файлы</button>
+            </form>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Все права защищены</p>
+        </div>
+    </div>
+
+    <script>
+        const formFields = document.getElementById('formFields');
+        const addFieldButton = document.getElementById('addField');
+        const fileList = document.getElementById('fileList');
+        const uploadForm = document.getElementById('uploadForm');
+        const templateSelect = document.getElementById('templateSelect');
+        const mainVariablesContainer = document.getElementById('mainVariables');
+
+        // Загрузка сохраненных пользовательских переменных из localStorage
+        const savedFields = JSON.parse(localStorage.getItem('userFields')) || [];
+        savedFields.forEach(function(field) {
+            createFieldInput(field.name, field.value);
+        });
+
+        // Загрузка списка файлов при загрузке страницы
+        fetchFileList();
+
+        // Загрузка основных переменных для выбранного шаблона при загрузке страницы
+        fetchTemplateVariables(templateSelect.value);
+
+        addFieldButton.addEventListener('click', function() {
+            const fieldName = prompt('Введите имя переменной (без фигурных скобок):');
+            if (fieldName) {
+                createFieldInput(fieldName, '');
+                saveUserFields();
+            }
+        });
+
+        document.getElementById('generateForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var form = event.target;
+            var formData = new FormData(form);
+
+            var data = {};
+            formData.forEach(function(value, key) {
+                data[key] = value;
+            });
+
+            fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                var downloadLink = document.getElementById('downloadLink');
+                downloadLink.innerHTML = `<a href="/download/index.html" download>Скачать сгенерированный HTML</a>`;
+
+                var downloadArchive = document.getElementById('downloadArchive');
+                downloadArchive.innerHTML = `<a href="/${data.archiveName}" download>Скачать сайт в ZIP</a>`;
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        });
+
+        uploadForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(uploadForm);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    fetchFileList();
+                    uploadForm.reset();
+                } else {
+                    console.error('Ошибка при загрузке файлов:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        });
+
+        templateSelect.addEventListener('change', function() {
+            const selectedTemplate = templateSelect.value;
+            fetchTemplateVariables(selectedTemplate);
+        });
+
+        function fetchTemplateVariables(template) {
+    fetch(`/templates/${template}.json`)
+        .then(response => response.json())
+        .then(data => {
+            renderMainVariables(data.sections);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке переменных шаблона:', error);
+        });
+}
+
+        function renderMainVariables(sections) {
+    mainVariablesContainer.innerHTML = '';
+
+    sections.forEach(section => {
+        const sectionTitle = document.createElement('h3');
+        sectionTitle.textContent = section.title;
+        mainVariablesContainer.appendChild(sectionTitle);
+
+        section.variables.forEach(variable => {
+            const label = document.createElement('label');
+            label.textContent = variable.label;
+            mainVariablesContainer.appendChild(label);
+            mainVariablesContainer.appendChild(document.createElement('br'));
+
+            const input = document.createElement(variable.type === 'textarea' ? 'textarea' : 'input');
+            input.name = variable.name;
+            input.placeholder = `Введите ${variable.label}`;
+            mainVariablesContainer.appendChild(input);
+            mainVariablesContainer.appendChild(document.createElement('br'));
+        });
+    });
+}
+
+        function fetchFileList() {
+            fetch('/files')
+                .then(response => response.json())
+                .then(data => {
+                    fileList.innerHTML = '';
+                    data.forEach(file => {
+                        const fileItem = document.createElement('div');
+                        fileItem.textContent = file;
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Удалить';
+                        deleteButton.addEventListener('click', function() {
+                            deleteFile(file);
+                        });
+
+                        fileItem.appendChild(deleteButton);
+                        fileList.appendChild(fileItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Ошибка при загрузке списка файлов:', error);
+                });
+        }
+
+        function deleteFile(file) {
+            fetch(`/delete/${file}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    fetchFileList();
+                } else {
+                    console.error('Ошибка при удалении файла:', data.error);
+                }
+            })
+			
+			            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        }
+
+        function createFieldInput(name, value) {
+            const fieldContainer = document.createElement('div');
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = name;
+            input.value = value;
+            input.placeholder = `Значение для {{${name}}}`;
+            fieldContainer.appendChild(input);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.type = 'button';
+            deleteButton.textContent = 'Удалить';
+            deleteButton.addEventListener('click', function() {
+                fieldContainer.remove();
+                saveUserFields();
+            });
+            fieldContainer.appendChild(deleteButton);
+
+            formFields.appendChild(fieldContainer);
+        }
+
+        function saveUserFields() {
+            const inputs = formFields.getElementsByTagName('input');
+            const userFields = Array.from(inputs).map(function(input) {
+                return { name: input.name, value: input.value };
+            });
+            localStorage.setItem('userFields', JSON.stringify(userFields));
+        }
+    </script>
+</body>
+</html>

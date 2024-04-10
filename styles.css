@@ -1,0 +1,114 @@
+/* styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #7c6c6c; /* светлый фон */
+    color: #333; /* темный текст */
+}
+
+.navbar {
+    background-color: #f8f8f8; /* светлый фон для навигационной панели */
+    padding: 10px 20px;
+    overflow: hidden;
+    border-bottom: 1px solid #e7e7e7; /* граница снизу */
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #333; /* темный текст */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.navbar a:hover {
+    background-color: #ddd; /* цвет при наведении */
+    color: black;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header {
+    background-color: #eee; /* светлый фон для заголовка */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd; /* граница снизу */
+}
+
+.header h1 {
+    margin: 0;
+    color: #333; /* темный текст */
+}
+
+.main-content {
+    background-color: #fff; /* светлый фон для основного содержимого */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* тень для блока */
+}
+
+.footer {
+    background-color: #eee; /* светлый фон для футера */
+    padding: 10px 20px;
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #ddd; /* граница сверху */
+}
+
+.footer p {
+    margin: 0;
+    color: #333; /* темный текст */
+}
+
+input[type=text], textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ddd; /* граница для полей ввода */
+    background-color: #fff; /* светлый фон */
+    color: #333; /* темный текст */
+}
+
+input[type=text], placeholder {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ddd; /* граница для полей ввода */
+    background-color: #fff; /* светлый фон */
+    color: #333; /* темный текст */
+}
+
+input[type=text], text {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ddd; /* граница для полей ввода */
+    background-color: #fff; /* светлый фон */
+    color: #333; /* темный текст */
+}
+
+button {
+    background-color: #5cb85c; /* зеленый цвет кнопки */
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #4cae4c; /* темно-зеленый цвет при наведении */
+}
