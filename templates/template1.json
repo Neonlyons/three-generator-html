@@ -1,0 +1,310 @@
+{
+  "sections": [
+    {
+      "name": "main",
+      "title": "Заголовки и шапка сайта",
+      "variables": [
+        {
+          "name": "title",
+          "label": "Тайтл сайта",
+          "type": "textarea"
+        },
+        {
+          "name": "description",
+          "label": "Описание сайта",
+          "type": "textarea"
+        },
+        {
+          "name": "site_name",
+          "label": "Наименование сайта",
+          "type": "textarea"
+        },
+        {
+          "name": "h1_title",
+          "label": "Заголовок H1",
+          "type": "textarea"
+        },
+        {
+          "name": "head_desc",
+          "label": "Краткое описание после заголовка",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "name": "object_data",
+      "title": "Характеристики",
+      "variables": [
+        {
+          "name": "year_over",
+          "label": "Завершение строительства (указать год)",
+          "type": "textarea"
+        },
+        {
+          "name": "kvartal_over",
+          "label": "Завершение строительства (указать квартал)",
+          "type": "textarea"
+        },
+        {
+          "name": "etagi",
+          "label": "Количество этажей",
+          "type": "textarea"
+        },
+        {
+          "name": "procent_vznos",
+          "label": "Первый взнос (указать процент)",
+          "type": "textarea"
+        },
+        {
+          "name": "project",
+          "label": "Наслаждайтесь жизнью в (указать наименование)",
+          "type": "textarea"
+        },
+        {
+          "name": "desc_project",
+          "label": "Описание после заголовка (типа идеальное место для комфортной жизни)",
+          "type": "textarea"
+        },
+        {
+          "name": "li_1",
+          "label": "Особеность 1",
+          "type": "textarea"
+        },
+        {
+          "name": "li_2",
+          "label": "Особеность 2",
+          "type": "textarea"
+        },
+        {
+          "name": "li_3",
+          "label": "Особеность 3",
+          "type": "textarea"
+        },
+        {
+          "name": "li_4",
+          "label": "Особеность 4",
+          "type": "textarea"
+        },
+        {
+          "name": "li_5",
+          "label": "Особеность 5",
+          "type": "textarea"
+        },
+        {
+          "name": "li_6",
+          "label": "Особеность 6",
+          "type": "textarea"
+        },
+        {
+          "name": "li_7",
+          "label": "Особеность 7",
+          "type": "textarea"
+        },
+        {
+          "name": "li_8",
+          "label": "Особеность 8",
+          "type": "textarea"
+        },
+        {
+          "name": "li_9",
+          "label": "Особеность 9",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "name": "layouts_prices",
+      "title": "Цены на апартаменты",
+      "variables": [
+        {
+          "name": "v_prodaze",
+          "label": "Описание какие апартаменты в продаже",
+          "type": "textarea"
+        },
+        {
+          "name": "appart_1",
+          "label": "Наименование апартамента 1",
+          "type": "textarea"
+        },
+        {
+          "name": "price_1",
+          "label": "Стоимость апартамента 1",
+          "type": "textarea"
+        },
+        {
+          "name": "appart_2",
+          "label": "Наименование апартамента 2",
+          "type": "textarea"
+        },
+        {
+          "name": "price_2",
+          "label": "Стоимость апартамента 2",
+          "type": "textarea"
+        },
+        {
+          "name": "appart_3",
+          "label": "Наименование апартамента 3",
+          "type": "textarea"
+        },
+        {
+          "name": "price_3",
+          "label": "Стоимость апартамента 3",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "name": "facts",
+      "title": "Схема оплаты",
+      "variables": [
+        {
+          "name": "desc_picture",
+          "label": "Описание перед каруселью картинок",
+          "type": "textarea"
+        },
+        {
+          "name": "proz_1",
+          "label": "Оплата при бронировании (указать процент)",
+          "type": "textarea"
+        },
+        {
+          "name": "proz_1_desc",
+          "label": "Оплата при бронировании (дополнительные сведения)",
+          "type": "textarea"
+        },
+        {
+          "name": "proz_2",
+          "label": "В процессе строительства (указать процент)",
+          "type": "textarea"
+        },
+        {
+          "name": "proz_2_desc",
+          "label": "В процессе строительства (дополнительные сведения)",
+          "type": "textarea"
+        },
+        {
+          "name": "proz_3",
+          "label": "По завершению строительства (указать процент)",
+          "type": "textarea"
+        },
+        {
+          "name": "proz_3_desc",
+          "label": "По завершению строительства (дополнительные сведения)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "name": "raspologenie",
+      "title": "Расположение и особенности",
+      "variables": [
+        {
+          "name": "rasp_name",
+          "label": "Расположение (указать наименование)",
+          "type": "textarea"
+        },
+        {
+          "name": "iframe_maps",
+          "label": "Вставить код с google maps вместе с <iframe>",
+          "type": "textarea"
+        },
+        {
+          "name": "raspop_1",
+          "label": "Особенность 1",
+          "type": "textarea"
+        },
+        {
+          "name": "raspop_2",
+          "label": "Особенность 2",
+          "type": "textarea"
+        },
+        {
+          "name": "raspop_3",
+          "label": "Особенность 3",
+          "type": "textarea"
+        },
+        {
+          "name": "raspop_4",
+          "label": "Особенность 4",
+          "type": "textarea"
+        },
+        {
+          "name": "raspop_5",
+          "label": "Особенность 5",
+          "type": "textarea"
+        },
+        {
+          "name": "dost_1",
+          "label": "Время до объекта (наименование 1)",
+          "type": "textarea"
+        },
+        {
+          "name": "time_1",
+          "label": "Время до объекта 1 (указать время, только цифры)",
+          "type": "textarea"
+        },
+        {
+          "name": "dost_2",
+          "label": "Время до объекта (наименование 2)",
+          "type": "textarea"
+        },
+        {
+          "name": "time_2",
+          "label": "Время до объекта 2 (указать время, только цифры)",
+          "type": "textarea"
+        },
+        {
+          "name": "dost_3",
+          "label": "Время до объекта (наименование 3)",
+          "type": "textarea"
+        },
+        {
+          "name": "time_3",
+          "label": "Время до объекта 3 (указать время, только цифры)",
+          "type": "textarea"
+        },
+        {
+          "name": "dost_4",
+          "label": "Время до объекта (наименование 4)",
+          "type": "textarea"
+        },
+        {
+          "name": "time_4",
+          "label": "Время до объекта 4 (указать время, только цифры)",
+          "type": "textarea"
+        },
+        {
+          "name": "dost_5",
+          "label": "Время до объекта (наименование 5)",
+          "type": "textarea"
+        },
+        {
+          "name": "time_5",
+          "label": "Время до объекта 5 (указать время, только цифры)",
+          "type": "textarea"
+        },
+        {
+          "name": "dost_6",
+          "label": "Время до объекта (наименование 6)",
+          "type": "textarea"
+        },
+        {
+          "name": "time_6",
+          "label": "Время до объекта 6 (указать время, только цифры)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "name": "metrika",
+      "title": "Яндекс.Метрика",
+      "variables": [
+        {
+          "name": "Yandex.Metrika",
+          "label": "Вставить полностью код из Яндекс.Метрика",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

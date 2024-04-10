@@ -1,0 +1,14 @@
+{
+  "variables": [
+    {
+      "name": "registration_info",
+      "label": "Все про регистрацию",
+      "type": "textarea"
+    },
+    {
+      "name": "heading_h3",
+      "label": "Заголовок H3",
+      "type": "textarea"
+    }
+  ]
+}
